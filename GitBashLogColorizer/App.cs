@@ -14,27 +14,28 @@ namespace GitBashLogColorizer
         {
             string logPath = args[0];
 
-            try { 
-            var fs = new FileStream(logPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
-            fs.Seek(-1024, SeekOrigin.End);
-
-            var wh = new AutoResetEvent(false);
-            var fsw = new FileSystemWatcher(Path.GetDirectoryName(logPath));
-            fsw.EnableRaisingEvents = true;
-            fsw.Changed += (s, e) => wh.Set();
-            using (var sr = new StreamReader(fs))
+            try
             {
-                var ccw = new ColoredConsoleWriter();
-                var s = "";
-                while (true)
+                var fs = new FileStream(logPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+                fs.Seek(-4*4096, SeekOrigin.End);
+
+                var wh = new AutoResetEvent(false);
+                var fsw = new FileSystemWatcher(Path.GetDirectoryName(logPath));
+                fsw.EnableRaisingEvents = true;
+                fsw.Changed += (s, e) => wh.Set();
+                using (var sr = new StreamReader(fs))
                 {
-                    s = sr.ReadLine();
-                    if (s != null)
-                        ccw.WriteColoredLine(s);
-                    else
-                        wh.WaitOne(1000);
+                    var ccw = new ColoredConsoleWriter();
+                    var s = "";
+                    while (true)
+                    {
+                        s = sr.ReadLine();
+                        if (s != null)
+                            ccw.WriteColoredLine(s);
+                        else
+                            wh.WaitOne(1000);
+                    }
                 }
-            }
             }
             catch (Exception e)
             {
