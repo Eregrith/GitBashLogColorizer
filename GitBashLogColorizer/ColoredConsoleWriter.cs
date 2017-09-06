@@ -16,7 +16,11 @@ namespace GitBashLogColorizer
             StyleSheet.AddStyle("-----  Response  --", System.Drawing.Color.Chocolate);
             StyleSheet.AddStyle("----- / Response --", System.Drawing.Color.Chocolate);
             StyleSheet.AddStyle("[a-zA-Z]+Response", System.Drawing.Color.OliveDrab);
-            
+
+            StyleSheet.AddStyle("----- / Command ---", System.Drawing.Color.Fuchsia);
+            StyleSheet.AddStyle("-----  Command  ---", System.Drawing.Color.Fuchsia);
+            StyleSheet.AddStyle("[a-zA-Z]+Command", System.Drawing.Color.HotPink);
+
             StyleSheet.AddStyle("-----  Exception  -", System.Drawing.Color.Red);
             StyleSheet.AddStyle("----- / Exception -", System.Drawing.Color.Red);
             StyleSheet.AddStyle("Exception: *$", System.Drawing.Color.Red);

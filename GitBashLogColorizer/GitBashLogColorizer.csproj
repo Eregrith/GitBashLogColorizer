@@ -34,7 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Colorful.Console, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Colorful.Console.1.1.2\lib\net452\Colorful.Console.dll</HintPath>
+      <HintPath>..\packages\Colorful.Console.1.1.2\lib\net452\Colorful.Console.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />

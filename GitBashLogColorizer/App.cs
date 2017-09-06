@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace GitBashLogColorizer
 {
@@ -17,7 +13,15 @@ namespace GitBashLogColorizer
             try
             {
                 var fs = new FileStream(logPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
-                fs.Seek(-4*4096, SeekOrigin.End);
+
+                try
+                {
+                    fs.Seek(-4 * 4096, SeekOrigin.End);
+                }
+                catch (Exception)
+                {
+                    //can't seek ? No problem
+                }
 
                 var wh = new AutoResetEvent(false);
                 var fsw = new FileSystemWatcher(Path.GetDirectoryName(logPath));
